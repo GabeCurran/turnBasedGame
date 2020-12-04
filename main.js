@@ -1,34 +1,31 @@
+const team1Div = document.querySelector('#team1Div');
+const team2Div = document.querySelector('#team2Div');
+
 // Character list is an array. The array represents a single team.
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
 const characterList = [
     char1 = {
-        ID: 1,
 		name: "",
 		HP: 100,
 	},
 	char2 = {
-        ID: 2,
 		name: "",
 		HP: 100,
 	},
 	char3 = {
-        ID: 3,
 		name: "",
 		HP: 100,
 	},
 	char4 = {
-        ID: 4,
 		name: "",
 		HP: 100,
 	},
 	char5 = {
-        ID: 5,
 		name: "",
 		HP: 100,
 	},
 	char6 = {
-        ID: 6,
 		name: "",
 		HP: 100,
 	}
@@ -49,22 +46,29 @@ const chooseTeam = function() {
     return teamArray;
 };
 
-const team1 = function() {
-    let team = chooseTeam();
-    
-    let teamChar1 = team[0];
-    let teamChar2 = team[1];
-    let teamChar3 = team[2];
-    console.log(teamChar1);
-    console.log(teamChar2);
-    console.log(teamChar3);
-};
+let team1 = chooseTeam();
+let team2 = chooseTeam();
 
-team1();
+const appendTeam1 = function() {
+        for (let char of team1) {
+            charDiv = document.createElement('p');
+            charDiv.textContent = char;
+            team1Div.appendChild(charDiv);  
+        }
+    };
 
-//let team1 = [];
-//let team2 = [];
+const appendTeam2 = function() {
+        for (let char of team2) {
+            charDiv = document.createElement('p');
+            charDiv.textContent = char;
+            team2Div.appendChild(charDiv);  
+        }
+    };
 
-//console.log(team1, team2);
+console.log(team1, team2);
+appendTeam1();
+appendTeam2();
 
 // When user selects a character, that character is added to *team* array
+
+
