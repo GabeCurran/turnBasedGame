@@ -4,32 +4,32 @@
 const characterList = [
     char1 = {
         ID: 1,
-		name: "",
+		name: "Top Dude",
 		HP: 100,
 	},
 	char2 = {
         ID: 2,
-		name: "",
+		name: "Sidekick Dude",
 		HP: 100,
 	},
 	char3 = {
         ID: 3,
-		name: "",
+		name: "Dude 3",
 		HP: 100,
 	},
 	char4 = {
         ID: 4,
-		name: "",
+		name: "Dude 4",
 		HP: 100,
 	},
 	char5 = {
         ID: 5,
-		name: "",
+		name: "Dude 5",
 		HP: 100,
 	},
 	char6 = {
         ID: 6,
-		name: "",
+		name: "Dude 6",
 		HP: 100,
 	}
 ];
@@ -39,9 +39,9 @@ const characterList = [
 //};
 
 const chooseTeam = function() {
-    
+
     let teamArray = [];
-    
+
     for (let counter = 1; counter <= 3; counter++) {
         let choice = prompt("Choose your " + counter + " member!");
         teamArray.push(choice);
@@ -51,7 +51,7 @@ const chooseTeam = function() {
 
 const team1 = function() {
     let team = chooseTeam();
-    
+
     let teamChar1 = team[0];
     let teamChar2 = team[1];
     let teamChar3 = team[2];
@@ -61,6 +61,23 @@ const team1 = function() {
 };
 
 team1();
+
+// function for subtracting a character's HP due to an attack
+const attackDamage = function(attackStrength, target) {
+	originalHP = target.HP;
+	if (originalHP > attackStrength) {
+		target.HP -= attackStrength;
+		console.log(target.name + "'s HP went from " + originalHP + " to " + target.HP + "!"); // display on page instead of doing console.log()
+	} else if (originalHP <= attackStrength) {
+		target.HP = 0; // so HP can't go into the negatives
+		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
+	}
+};
+
+attackDamage(30, char1); // char1 takes 30 damage
+attackDamage(40, char1); // char1 takes 40 damage
+attackDamage(30, char1); // char1 takes 30 damage and is defeated
+
 
 //let team1 = [];
 //let team2 = [];
