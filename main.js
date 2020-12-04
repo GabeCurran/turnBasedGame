@@ -60,7 +60,28 @@ const team1 = function() {
     console.log(teamChar3);
 };
 
-team1();
+let team1 = chooseTeam();
+let team2 = chooseTeam();
+
+const appendTeam1 = function() {
+        for (let char of team1) {
+            charDiv = document.createElement('p');
+            charDiv.textContent = char;
+            team1Div.appendChild(charDiv);
+        }
+    };
+
+const appendTeam2 = function() {
+        for (let char of team2) {
+            charDiv = document.createElement('p');
+            charDiv.textContent = char;
+            team2Div.appendChild(charDiv);
+        }
+    };
+
+console.log(team1, team2);
+appendTeam1();
+appendTeam2();
 
 // function for subtracting a character's HP due to an attack
 const attackDamage = function(attackStrength, target) {
