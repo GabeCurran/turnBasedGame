@@ -5,29 +5,35 @@ const team2Div = document.querySelector('#team2Div');
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
 const characterList = [
-    char1 = {
-		name: "",
+    {
+		name: "1",
 		HP: 100,
+		speed: 75,
 	},
-	char2 = {
-		name: "",
+	{
+		name: "2",
 		HP: 100,
+		speed: 75,
 	},
-	char3 = {
-		name: "",
+	{
+		name: "3",
 		HP: 100,
+		speed: 75,
 	},
-	char4 = {
-		name: "",
+	{
+		name: "4",
 		HP: 100,
+		speed: 75,
 	},
-	char5 = {
-		name: "",
+	{
+		name: "5",
 		HP: 100,
+		speed: 75,
 	},
-	char6 = {
-		name: "",
+	{
+		name: "6",
 		HP: 100,
+		speed: 75,
 	}
 ];
 
@@ -36,12 +42,15 @@ const characterList = [
 //};
 
 const chooseTeam = function() {
-    
+
     let teamArray = [];
-    
+
     for (let counter = 1; counter <= 3; counter++) {
         let choice = prompt("Choose your " + counter + " member!");
-        teamArray.push(choice);
+		choice--;
+        teamArray.push(characterList[choice].name);
+		teamArray.push(characterList[choice].HP);
+		teamArray.push(characterList[choice].speed);
     };
     return teamArray;
 };
@@ -53,7 +62,7 @@ const appendTeam1 = function() {
         for (let char of team1) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
-            team1Div.appendChild(charDiv);  
+            team1Div.appendChild(charDiv);
         }
     };
 
@@ -61,7 +70,7 @@ const appendTeam2 = function() {
         for (let char of team2) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
-            team2Div.appendChild(charDiv);  
+            team2Div.appendChild(charDiv);
         }
     };
 
@@ -70,5 +79,3 @@ appendTeam1();
 appendTeam2();
 
 // When user selects a character, that character is added to *team* array
-
-
