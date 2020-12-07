@@ -6,32 +6,32 @@ const team2Div = document.querySelector('#team2Div');
 
 const characterList = [
     {
-		name: "1",
+		name: "Billy",
 		HP: 100,
 		speed: 75,
 	},
 	{
-		name: "2",
+		name: "Bob",
 		HP: 100,
 		speed: 75,
 	},
 	{
-		name: "3",
+		name: "Joe",
 		HP: 100,
 		speed: 75,
 	},
 	{
-		name: "4",
+		name: "Alfa",
 		HP: 100,
 		speed: 75,
 	},
 	{
-		name: "5",
+		name: "Bravo",
 		HP: 100,
 		speed: 75,
 	},
 	{
-		name: "6",
+		name: "Charlie",
 		HP: 100,
 		speed: 75,
 	}
@@ -48,9 +48,12 @@ const chooseTeam = function() {
     for (let counter = 1; counter <= 3; counter++) {
         let choice = prompt("Choose your " + counter + " member!");
 		choice--;
-        teamArray.push(characterList[choice].name);
-		teamArray.push(characterList[choice].HP);
-		teamArray.push(characterList[choice].speed);
+        
+        let charArray = [];
+
+        charArray.push(characterList[choice].name);
+        charArray.push(characterList[choice].HP);
+        teamArray.push(charArray);
     };
     return teamArray;
 };
