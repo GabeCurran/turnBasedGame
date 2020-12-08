@@ -81,6 +81,8 @@ const appendTeam2 = function() {
 const makeTeams = function() {
     appendTeam1();
     appendTeam2();
-}
+    let button = document.querySelector('#selectTeams');
+    button.remove();
+};
 
 // When user selects a character, that character is added to *team* array
