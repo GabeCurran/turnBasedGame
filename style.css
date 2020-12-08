@@ -9,14 +9,24 @@ main {
     justify-content: center;
 }
 
-div {
+.teams {
     text-align: center;
     display: grid;
     grid-template: 1fr / 1fr 1fr 1fr;
 }
 
-div > p {
+.teams > p {
     margin: 10px 0 10px 0;
     padding: 10px 5px 10px 5px;
     border: 1px solid gray;
+}
+
+#displayCharacters {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+#displayCharacters > p {
+    padding: 10px;
+    border: 2px solid gray;
 }

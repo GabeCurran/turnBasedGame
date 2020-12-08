@@ -58,10 +58,9 @@ const chooseTeam = function() {
     return teamArray;
 };
 
-let team1 = chooseTeam();
-let team2 = chooseTeam();
-
 const appendTeam1 = function() {
+        let team1 = chooseTeam();
+    
         for (let char of team1) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
@@ -70,6 +69,8 @@ const appendTeam1 = function() {
     };
 
 const appendTeam2 = function() {
+        let team2 = chooseTeam();
+    
         for (let char of team2) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
@@ -77,8 +78,9 @@ const appendTeam2 = function() {
         }
     };
 
-console.log(team1, team2);
-appendTeam1();
-appendTeam2();
+const makeTeams = function() {
+    appendTeam1();
+    appendTeam2();
+}
 
 // When user selects a character, that character is added to *team* array
