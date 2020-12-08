@@ -41,12 +41,15 @@ const characterList = [
 //	console.log(element);
 //};
 
+let team1 = [];
+let team2 = [];
+
 const chooseTeam = function() {
 
     let teamArray = [];
 
     for (let counter = 1; counter <= 3; counter++) {
-        let choice = prompt("Choose your " + counter + " member!");
+        let choice = prompt("Choose your " + counter + " member!\nPick their number!");
 		choice--;
         
         let charArray = [];
@@ -58,11 +61,11 @@ const chooseTeam = function() {
     return teamArray;
 };
 
-let team1 = chooseTeam();
-let team2 = chooseTeam();
-
 const appendTeam1 = function() {
-        for (let char of team1) {
+        let team = chooseTeam();
+        team1.push(team);
+    
+        for (let char of team) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
             team1Div.appendChild(charDiv);
@@ -70,15 +73,21 @@ const appendTeam1 = function() {
     };
 
 const appendTeam2 = function() {
-        for (let char of team2) {
+        let team = chooseTeam();
+        team2.push(team);
+    
+        for (let char of team) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
             team2Div.appendChild(charDiv);
         }
     };
 
-console.log(team1, team2);
-appendTeam1();
-appendTeam2();
+const makeTeams = function() {
+    appendTeam1();
+    appendTeam2();
+    let button = document.querySelector('#selectTeams');
+    button.remove();
+};
 
 // When user selects a character, that character is added to *team* array
