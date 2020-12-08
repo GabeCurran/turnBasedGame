@@ -41,12 +41,15 @@ const characterList = [
 //	console.log(element);
 //};
 
+let team1 = [];
+let team2 = [];
+
 const chooseTeam = function() {
 
     let teamArray = [];
 
     for (let counter = 1; counter <= 3; counter++) {
-        let choice = prompt("Choose your " + counter + " member!");
+        let choice = prompt("Choose your " + counter + " member!\nPick their number!");
 		choice--;
         
         let charArray = [];
@@ -59,9 +62,10 @@ const chooseTeam = function() {
 };
 
 const appendTeam1 = function() {
-        let team1 = chooseTeam();
+        let team = chooseTeam();
+        team1.push(team);
     
-        for (let char of team1) {
+        for (let char of team) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
             team1Div.appendChild(charDiv);
@@ -69,9 +73,10 @@ const appendTeam1 = function() {
     };
 
 const appendTeam2 = function() {
-        let team2 = chooseTeam();
+        let team = chooseTeam();
+        team2.push(team);
     
-        for (let char of team2) {
+        for (let char of team) {
             charDiv = document.createElement('p');
             charDiv.textContent = char;
             team2Div.appendChild(charDiv);
