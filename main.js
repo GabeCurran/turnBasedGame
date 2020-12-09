@@ -94,6 +94,8 @@ const appendTeam = function(team, teamDiv) {
     };
 
 const startGame = function() {
+	startGameButton.remove();
+	attackButton.style.visibility = "visible";
     console.log("This is where the game starts");
 };
 
@@ -111,4 +113,12 @@ const attackDamage = function(attackStrength, target) {
 	}
 };
 
-//attackDamage(30, team1);
+// So... if this is going the route I think it's going, we're going to have to have a method like this for each single button.
+// I mean, it shouldn't be too hard, but it will be a lot of functions.
+// But I think that's just what's necessary at the moment.
+const attackTest = function() {
+	attackDamage(30, team1[0]);
+}
+
+const attackButton = document.querySelector("#attack");
+attackButton.addEventListener("click", attackTest);
