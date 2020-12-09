@@ -5,17 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
         <title>Turn Based Game</title>
-        
+
         <link rel="stylesheet" href="style.css" type="text/css" />
     </head>
-    
+
     <body>
-        
+
         <main id='gameContainer'>
-        
-            <div id='team1Div' class='teams'></div>
-            <div id='team2Div' class='teams'></div>
-            
+
             <div id='displayCharacters'>
                 <p>Billy #1: 100 HP, 75 Speed</p>
                 <p>Bob #2: 100 HP, 75 Speed</p>
@@ -24,13 +21,19 @@
                 <p>Bravo #5: 100 HP, 75 Speed</p>
                 <p>Charlie #6: 100 HP, 75 Speed</p>
             </div>
-            
-            <button id='selectTeams' onclick="makeTeams()">Select Teams</button>
-            
+
+			<div id='team1Div' class='teams'>
+			</div>
+            <div id='team2Div' class='teams'></div>
+
+            <button id='selectTeam1'>Choose Team 1 roster</button>
+			<button id='selectTeam2'>Choose Team 2 roster</button>
+			<button id="startGame">Start!</button>
+
         </main>
-        
+
         <script src="main.js"></script>
-        
+
     </body>
-    
+
 </html>
