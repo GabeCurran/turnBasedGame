@@ -22,13 +22,37 @@ main {
     border: 1px solid gray;
 }
 
+.teams {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid grey;
+	margin: 15px;
+	padding: 15px;
+}
+
+.teamChar {
+	display: flex;
+	border: 1px solid grey;
+	padding: 10px;
+	margin: 5px;
+}
+
+.charStatBox {
+	color: green;
+	border: 2px solid green;
+	margin: 5px;
+	padding: 5px;
+}
+
 #attack {
 	visibility: hidden;
 }
 
 #displayCharacters {
+	/*
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+	*/
 }
 
 #displayCharacters > p {

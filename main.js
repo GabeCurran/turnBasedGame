@@ -1,5 +1,23 @@
 const team1Div = document.querySelector('#team1Div');
 const team2Div = document.querySelector('#team2Div');
+
+
+// team 1
+let team1char1name = document.querySelector("#team1char1name");
+let team1char1health = document.querySelector("#team1char1health");
+let team1char2name = document.querySelector("#team1char2name");
+let team1char2health = document.querySelector("#team1char2health");
+let team1char3name = document.querySelector("#team1char3name");
+let team1char3health = document.querySelector("#team1char3health");
+
+// team 2
+let team2char1name = document.querySelector("#team2char1name");
+let team2char1health = document.querySelector("#team2char1health");
+let team2char2name = document.querySelector("#team2char2name");
+let team2char2health = document.querySelector("#team2char2health");
+let team2char3name = document.querySelector("#team2char3name");
+let team2char3health = document.querySelector("#team2char3health");
+
 const chooseTeam1Button = document.querySelector("#selectTeam1");
 const chooseTeam2Button = document.querySelector("#selectTeam2");
 const startGameButton = document.querySelector("#startGame");
@@ -57,10 +75,31 @@ const chooseTeam = function() {
     return teamArray;
 };
 
+const setTeamVisuals = function() {
+	// Team 1
+	team1char1name.innerHTML = team1[0].name;
+	team1char1health.innerHTML = team1[0].HP;
+
+	team1char2name.innerHTML = team1[1].name;
+	team1char2health.innerHTML = team1[1].HP;
+
+	team1char3name.innerHTML = team1[2].name;
+	team1char3health.innerHTML = team1[2].HP;
+
+	// Team 2
+	team2char1name.innerHTML = team2[0].name;
+	team2char1health.innerHTML = team2[0].HP;
+
+	team2char2name.innerHTML = team2[1].name;
+	team2char2health.innerHTML = team2[1].HP;
+
+	team2char3name.innerHTML = team2[2].name;
+	team2char3health.innerHTML = team2[2].HP;
+}
+
 const makeTeam1 = function() {
 	team1 = chooseTeam();
 	console.log("makeTeam1");
-    appendTeam(team1, team1Div);
 	chooseTeam1Button.remove();
 	return team1;
 }
@@ -68,7 +107,6 @@ const makeTeam1 = function() {
 const makeTeam2 = function() {
 	team2 = chooseTeam();
 	console.log("makeTeam2");
-    appendTeam(team2, team2Div);
 	chooseTeam2Button.remove();
 	return team2;
 }
@@ -76,26 +114,10 @@ const makeTeam2 = function() {
 chooseTeam1Button.addEventListener("click", makeTeam1);
 chooseTeam2Button.addEventListener("click", makeTeam2);
 
-// Make a div for each character INSIDE the teamDiv.
-// Have sub-divs inside character divs; character name is on the left, and character HP is on the right.
-// Add the entire character div into the teamDiv.
-const appendTeam = function(team, teamDiv) {
-    for (let char of team) {
-		let charDiv = document.createElement("div");
-        let nameDiv = document.createElement("div");
-		nameDiv.innerHTML = char.name;
-        charDiv.appendChild(nameDiv);
-		let healthDiv = document.createElement("div");
-		healthDiv.innerHTML = char.HP;
-		charDiv.appendChild(healthDiv);
-		teamDiv.appendChild(charDiv);
-    }
-		console.log("appendTeam");
-    };
-
 const startGame = function() {
 	startGameButton.remove();
 	attackButton.style.visibility = "visible";
+	setTeamVisuals();
     console.log("This is where the game starts");
 };
 
@@ -118,6 +140,7 @@ const attackDamage = function(attackStrength, target) {
 // But I think that's just what's necessary at the moment.
 const attackTest = function() {
 	attackDamage(30, team1[0]);
+	team1char1health.innerHTML = team1[0].HP;
 }
 
 const attackButton = document.querySelector("#attack");
