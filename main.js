@@ -161,7 +161,14 @@ const attackDamage = function(attackStrength, target) {
 	} else if (originalHP <= attackStrength) {
 		target.HP = 0; // so HP can't go into the negatives
 		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
-	}
+        if (turn === 0) {
+            team1Current++;
+            turn = 1;
+        } else {
+            team2Current++;
+            turn = 0;
+        };
+	};
 };
 
 // So... if this is going the route I think it's going, we're going to have to have a method like this for each single button.
