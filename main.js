@@ -1,6 +1,7 @@
 const team1Div = document.querySelector('#team1Div');
 const team2Div = document.querySelector('#team2Div');
 
+const attackButtons = document.querySelector(".attackButtons");
 
 // team 1
 let team1char1name = document.querySelector("#team1char1name");
@@ -117,7 +118,7 @@ chooseTeam2Button.addEventListener("click", makeTeam2);
 
 const startGame = function() {
 	startGameButton.remove();
-	attackButton.style.visibility = "visible";
+	attackButtons.style.visibility = "visible";
 	setTeamVisuals();
     console.log("This is where the game starts");
 };
@@ -126,7 +127,7 @@ startGameButton.addEventListener("click", startGame);
 
 // function for subtracting a character's HP due to an attack
 const attackDamage = function(attackStrength, target) {
-	let originalHP = target.HP; // let originalHP = target.HP;
+	let originalHP = target.HP;
 	if (originalHP > attackStrength) {
 		target.HP -= attackStrength;
 		console.log(target.name + "'s HP went from " + originalHP + " to " + target.HP + "!"); // display on page instead of doing console.log()
@@ -139,11 +140,49 @@ const attackDamage = function(attackStrength, target) {
 // So... if this is going the route I think it's going, we're going to have to have a method like this for each single button.
 // I mean, it shouldn't be too hard, but it will be a lot of functions.
 // But I think that's just what's necessary at the moment.
-const attackTest = function() {
+const attackTeam1Char1 = function() {
 	attackDamage(30, team1[0]);
 	team1char1health.innerHTML = team1[0].HP;
-	console.log(characterList[0].HP);
 }
+let attackTeam1Char1Button = document.querySelector("#attack-1-1");
+attackTeam1Char1Button.addEventListener("click", attackTeam1Char1);
 
-const attackButton = document.querySelector("#attack");
-attackButton.addEventListener("click", attackTest);
+
+const attackTeam1Char2 = function() {
+	attackDamage(30, team1[1]);
+	team1char2health.innerHTML = team1[1].HP;
+}
+let attackTeam1Char2Button = document.querySelector("#attack-1-2");
+attackTeam1Char2Button.addEventListener("click", attackTeam1Char2);
+
+
+const attackTeam1Char3 = function() {
+	attackDamage(30, team1[2]);
+	team1char3health.innerHTML = team1[2].HP;
+}
+let attackTeam1Char3Button = document.querySelector("#attack-1-3");
+attackTeam1Char3Button.addEventListener("click", attackTeam1Char3);
+
+
+const attackTeam2Char1 = function() {
+	attackDamage(30, team2[0]);
+	team2char1health.innerHTML = team2[0].HP;
+}
+let attackTeam2Char1Button = document.querySelector("#attack-2-1");
+attackTeam2Char1Button.addEventListener("click", attackTeam2Char1);
+
+
+const attackTeam2Char2 = function() {
+	attackDamage(30, team2[1]);
+	team2char2health.innerHTML = team2[1].HP;
+}
+let attackTeam2Char2Button = document.querySelector("#attack-2-2");
+attackTeam2Char2Button.addEventListener("click", attackTeam2Char2);
+
+
+const attackTeam2Char3 = function() {
+	attackDamage(30, team2[2]);
+	team2char3health.innerHTML = team2[2].HP;
+}
+let attackTeam2Char3Button = document.querySelector("#attack-2-3");
+attackTeam2Char3Button.addEventListener("click", attackTeam2Char3);

@@ -44,7 +44,9 @@ main {
 	padding: 5px;
 }
 
-#attack {
+.attackButtons {
+	display: flex;
+	flex-direction: column;
 	visibility: hidden;
 }
 
