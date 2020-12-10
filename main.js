@@ -46,7 +46,7 @@ attackGuy.addEventListener("click", attackCharacter);
 const characterList = [
     {
 		name: "Billy",
-		HP: 100,
+		HP: 200,
 		speed: 75,
         attack: 25
 	},
@@ -89,6 +89,18 @@ let team2;
 
 let team1Current = 0;
 let team2Current = 0;
+
+let team1Death = function() {
+    if (team1Current === 2) {
+        console.log("team 1 dead lol")
+    };
+};
+
+let team2Death = function() {
+    if (team2Current === 2) {
+        console.log("team 2 dead lol")
+    };
+};
 
 const chooseTeam = function() {
     let teamArray = [];
@@ -162,9 +174,11 @@ const attackDamage = function(attackStrength, target) {
 		target.HP = 0; // so HP can't go into the negatives
 		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
         if (turn === 0) {
+            team1Death();
             team1Current++;
             turn = 1;
         } else {
+            team2Death();
             team2Current++;
             turn = 0;
         };
