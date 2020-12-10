@@ -23,6 +23,22 @@ const chooseTeam1Button = document.querySelector("#selectTeam1");
 const chooseTeam2Button = document.querySelector("#selectTeam2");
 const startGameButton = document.querySelector("#startGame");
 
+const attackGuy = document.querySelector('#attackGuy')
+
+const attackCharacter = function() {
+    if (turn === 0) {
+        attackDamage(team2[team2Current].attack, team1[team1Current]);
+        turn = 1;
+    } else {
+        attackDamage(team1[team1Current].attack, team2[team2Current]);
+        turn = 0;
+    };
+    console.log(turn);
+};
+
+attackGuy.addEventListener("click", attackCharacter);
+
+
 // Character list is an array. The array represents a single team.
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
@@ -32,36 +48,47 @@ const characterList = [
 		name: "Billy",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	},
 	{
 		name: "Bob",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	},
 	{
 		name: "Joe",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	},
 	{
 		name: "Alpha",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	},
 	{
 		name: "Bravo",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	},
 	{
 		name: "Charlie",
 		HP: 100,
 		speed: 75,
+        attack: 25
 	}
 ];
 
+let turn = 0;
+
 let team1;
 let team2;
+
+let team1Current = 0;
+let team2Current = 0;
 
 const chooseTeam = function() {
     let teamArray = [];
