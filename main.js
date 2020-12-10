@@ -63,14 +63,15 @@ let team1;
 let team2;
 
 const chooseTeam = function() {
-
     let teamArray = [];
 
     for (let counter = 1; counter <= 3; counter++) {
+		let chosenChar = {};
         let choice = prompt("Choose your " + counter + " member!\nPick their number!");
 		choice--;
-        teamArray.push(characterList[choice]);
-		console.log(characterList[choice]);
+		Object.assign(chosenChar, characterList[choice]);
+        teamArray.push(chosenChar);
+		console.log(chosenChar);
     };
     return teamArray;
 };
@@ -141,6 +142,7 @@ const attackDamage = function(attackStrength, target) {
 const attackTest = function() {
 	attackDamage(30, team1[0]);
 	team1char1health.innerHTML = team1[0].HP;
+	console.log(characterList[0].HP);
 }
 
 const attackButton = document.querySelector("#attack");
