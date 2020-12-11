@@ -10,38 +10,38 @@ const characterList = [
     {
 		name: "Billy",
 		HP: 200,
-		speed: 75,
-        attack: 25
+        attack: 25,
+        type: 'fire'
 	},
 	{
 		name: "Bob",
-		HP: 100,
-		speed: 75,
-        attack: 25
+		HP: 200,
+        attack: 25,
+        type: 'water'
 	},
 	{
-		name: "Joe",
-		HP: 100,
-		speed: 75,
-        attack: 25
+		name: "Phrog",
+		HP: 200,
+        attack: 25,
+        type: 'grass'
 	},
 	{
 		name: "Alpha",
 		HP: 100,
-		speed: 75,
-        attack: 25
+        attack: 50,
+        type: 'fire'
 	},
 	{
 		name: "Bravo",
 		HP: 100,
-		speed: 75,
-        attack: 25
+        attack: 50,
+        type: 'water'
 	},
 	{
 		name: "Charlie",
 		HP: 100,
-		speed: 75,
-        attack: 25
+        attack: 50,
+        type: 'grass'
 	}
 ];
 
@@ -83,7 +83,6 @@ const chooseTeam = function() {
 
 const makeTeam1 = function() {
 	team1 = chooseTeam();
-	console.log("makeTeam1");
 	chooseTeam1Button.remove();
 	chooseTeam2Button.style.visibility = "visible";
 	return team1;
@@ -91,32 +90,76 @@ const makeTeam1 = function() {
 
 const makeTeam2 = function() {
 	team2 = chooseTeam();
-	console.log("makeTeam2");
 	chooseTeam2Button.remove();
 	attackGuy.style.visibility = "visible";
 	return team2;
 }
 
-const attackCharacter = function() {
+const weakList = {
+    grass: ['fire'],
+    fire: ['water'],
+    water: ['grass']
+};
+
+const resistanceList = {
+    water: ['fire', 'water'],
+    grass: ['water', 'grass'],
+    fire: ['grass', 'fire']
+}
+
+//[1, 2, 3].includes(2)
+// true
+//[1, 2, 3].includes('hello')
+// false
+
+//WEAKNESSES[target.type].includes(attacker.type)
+
+const damageCalculator = function(attacker, target, ) {
+    let weak = false;
+    let resistant = false;
+    let damage = 0;
+
+    if (weakList[target.type].includes(attacker.type)) {
+        weak = true;
+    }
+
+    if (resistanceList[target.type].includes(attacker.type)) {
+        resistant = true;
+    }
+
+        if (weak === false && resistant === false) {
+            damage = attacker.attack;
+        } else if (weak === true && resistant === false) {
+            damage = attacker.attack*2;
+        } else if (weak === false && resistant === true) {
+            damage = attacker.attack*0.5;
+        }
+
+    console.log(weak, resistant);
+    return damage;
+};
+
+const turnCalculator = function() {
     if (turn === 0) {
-        attackDamage(team2[team2Current], team1[team1Current]);
+        attack(team2[team2Current], team1[team1Current]);
         turn = 1;
 		console.log("Team 1's turn");
     } else {
-        attackDamage(team1[team1Current], team2[team2Current]);
+        attack(team1[team1Current], team2[team2Current]);
         turn = 0;
 		console.log("Team 2's turn");
     };
 };
 
 // function for subtracting a character's HP due to an attack
-const attackDamage = function(attacker, target) {
+const attack = function(attacker, target) {
+    let damage = damageCalculator(attacker, target);
 	actionDisplay.innerHTML = (attacker.name + " attacks " + target.name + "!");
 	let originalHP = target.HP;
-	if (originalHP > attacker.attack) {
-		target.HP -= attacker.attack;
-		healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
-	} else if (originalHP <= attacker.attack) {
+	if (originalHP > damage) {
+		target.HP -= damage;
+		console.log(target.name + "'s HP went from " + healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
+	} else if (originalHP <= damage) {
 		target.HP = 0; // so HP can't go into the negatives
 		healthDisplay.innerHTML = (target.name + " is defeated!");
         if (turn === 0) {
@@ -132,7 +175,7 @@ const attackDamage = function(attacker, target) {
 };
 
 const attackGuy = document.querySelector('#attackGuy')
-attackGuy.addEventListener("click", attackCharacter);
+attackGuy.addEventListener("click", turnCalculator);
 
 const chooseTeam1Button = document.querySelector('#chooseTeam1Button');
 const chooseTeam2Button = document.querySelector('#chooseTeam2Button');
