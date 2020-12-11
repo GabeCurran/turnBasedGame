@@ -1,7 +1,15 @@
 // Character list is an array. The array represents a single team.
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
+/*
+Cool ideas:
+	- name color changes according to type
+	- add a resistance display ("attack x2" or something)
+*/
+
+
 let actionDisplay = document.querySelector("#actionDisplay");
+let addOnDisplay = document.querySelector("#addOnDisplay");
 let healthDisplay = document.querySelector("#healthDisplay");
 let winnerDisplay = document.querySelector("#winnerDisplay");
 
@@ -119,23 +127,25 @@ const damageCalculator = function(attacker, target, ) {
     let resistant = false;
     let damage = 0;
 
-    if (weakList[target.type].includes(attacker.type)) {
+    if (weakList[target.type].includes(attacker.type)) { // e.g., if weakList['grass'].includes('water')
         weak = true;
     }
 
-    if (resistanceList[target.type].includes(attacker.type)) {
+    if (resistanceList[target.type].includes(attacker.type)) { // e.g., if resistanceList['fire'].includes('fire')
         resistant = true;
     }
 
-        if (weak === false && resistant === false) {
-            damage = attacker.attack;
-        } else if (weak === true && resistant === false) {
-            damage = attacker.attack*2;
-        } else if (weak === false && resistant === true) {
-            damage = attacker.attack*0.5;
-        }
+    if (!weak && !resistant) {
+        damage = attacker.attack;
+    } else if (weak && !resistant) {
+		damage = attacker.attack*2;
+		addOnDisplay.innerHTML = (target.name + " takes extra damage from a " + attacker.type + " type!");
+    } else if (!weak && resistant) {
+        damage = attacker.attack*0.5;
+		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack!");
+    }
 
-    console.log(weak, resistant);
+    console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
     return damage;
 };
 
@@ -158,7 +168,7 @@ const attack = function(attacker, target) {
 	let originalHP = target.HP;
 	if (originalHP > damage) {
 		target.HP -= damage;
-		console.log(target.name + "'s HP went from " + healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
+		healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
 	} else if (originalHP <= damage) {
 		target.HP = 0; // so HP can't go into the negatives
 		healthDisplay.innerHTML = (target.name + " is defeated!");
