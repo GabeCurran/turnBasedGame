@@ -7,7 +7,26 @@ Cool ideas:
 	- add a resistance display ("attack x2" or something)
 */
 
+let startDisplay = document.querySelector("#startDisplay");
+let mainGame = document.querySelector("main");
 
+// player teams
+let team1char1 = document.querySelector("#team1char1");
+let team1char2 = document.querySelector("#team1char2");
+let team1char3 = document.querySelector("#team1char3");
+
+let team2char1 = document.querySelector("#team2char1");
+let team2char2 = document.querySelector("#team2char2");
+let team2char3 = document.querySelector("#team2char3");
+
+// visuals on the field
+let currentPlayer1 = document.querySelector("#currentPlayer1");
+let currentPlayer2 = document.querySelector("#currentPlayer2");
+let team1div = document.querySelector("#team1");
+let team2div = document.querySelector("#team2");
+
+
+// action descriptions
 let actionDisplay = document.querySelector("#actionDisplay");
 let addOnDisplay = document.querySelector("#addOnDisplay");
 let healthDisplay = document.querySelector("#healthDisplay");
@@ -99,8 +118,40 @@ const makeTeam1 = function() {
 const makeTeam2 = function() {
 	team2 = chooseTeam();
 	chooseTeam2Button.remove();
-	attackGuy.style.visibility = "visible";
+	setTeamVisuals();
+	setCurrentVisuals();
 	return team2;
+}
+
+const setTeamVisuals = function() {
+	mainGame.style.visibility = "visible";
+	startDisplay.remove();
+
+	team1char1.innerHTML = team1[0].name;
+	team1char2.innerHTML = team1[1].name;
+	team1char3.innerHTML = team1[2].name;
+
+	team2char1.innerHTML = team2[0].name;
+	team2char2.innerHTML = team2[1].name;
+	team2char3.innerHTML = team2[2].name;
+}
+
+const pickColor = function(currentPlayerDiv, team, currentPlayer) {
+	if (team[currentPlayer].type == "fire") {
+		currentPlayerDiv.style.backgroundColor = "#FF824C";
+	} else if (team[currentPlayer].type == "water") {
+		currentPlayerDiv.style.backgroundColor = "#4CDCFF";
+	} else if (team[currentPlayer].type == "grass") {
+		currentPlayerDiv.style.backgroundColor = "#63DC75";
+	}
+};
+
+const setCurrentVisuals = function() {
+	currentPlayer1.innerHTML = team1[team1Current].name;
+	pickColor(currentPlayer1, team1, team1Current);
+
+	currentPlayer2.innerHTML = team2[team2Current].name;
+	pickColor(currentPlayer2, team2, team2Current);
 }
 
 const weakList = {
@@ -182,6 +233,7 @@ const attack = function(attacker, target) {
             turn = 0;
         };
 	};
+	setCurrentVisuals();
 };
 
 const attackGuy = document.querySelector('#attackGuy')
