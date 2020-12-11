@@ -13,16 +13,16 @@
 
 		<div id="startDisplay">
 			<div id='displayCharacters'>
-				<div>Billy #1: 200 HP, 25 Attack, Fire</div>
-				<div>Bob #2: 200 HP, 25 Attack, Water</div>
-				<div>Phrog #3: 200 HP, 25 Attack, Grass</div>
-				<div>Alpha #4: 100 HP, 50 Attack, Fire</div>
-				<div>Bravo #5: 100 HP, 50 Attack, Water</div>
-				<div>Charlie #6: 100 HP, 50 Attack, Grass</div>
+				<div class="fire">#1 -- Billy -- 200 HP -- 25 Attack -- Fire</div>
+				<div class="water">#2 -- Bob -- 200 HP -- 25 Attack -- Water</div>
+				<div class="grass">#3 -- Phrog -- 200 HP -- 25 Attack -- Grass</div>
+				<div class="fire">#4 -- Alpha -- 100 HP -- 50 Attack -- Fire</div>
+				<div class="water">#5 -- Bravo -- 100 HP -- 50 Attack -- Water</div>
+				<div class="grass">#6 -- Charlie -- 100 HP -- 50 Attack -- Grass</div>
 			</div>
 
-			<button id='chooseTeam1Button'>Choose Team 1</button>
-			<button id='chooseTeam2Button'>Choose Team 2</button>
+			<button id='chooseTeam1Button' class="chooseTeams">Choose Team 1</button>
+			<button id='chooseTeam2Button' class="chooseTeams">Choose Team 2</button>
 		</div>
 
         <main id='gameContainer'>
@@ -65,6 +65,8 @@
 						</div>
 					</div>
 
+					<button id="resetGame">RESET</button>
+
 					<div id="team2" class="teams">
 						<div id="team2char1" class="teamChar">
 							2-1
@@ -83,13 +85,14 @@
 			</div>
 			<!-- the visuals for the game stop here -->
 
-			<div id="actionDisplay">action</div>
-			<div id="addOnDisplay">add on</div>
-			<div id="healthDisplay">health</div>
-			<div id="winnerDisplay">winner</div>
+			<div class="descStuff">
+				<div id="actionDisplay">---</div>
+				<div id="addOnDisplay">---</div>
+				<div id="healthDisplay">---</div>
+				<div id="winnerDisplay">---</div>
 
-			<button id='attackGuy'>Attack Guy</button>
-			<button id="resetGame">RESET</button>
+				<button id='attackGuy'>Attack Guy</button>
+			</div>
 
         </main>
 

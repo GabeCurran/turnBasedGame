@@ -1,12 +1,6 @@
 // Character list is an array. The array represents a single team.
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
-/*
-Cool ideas:
-	- name color changes according to type
-	- add a resistance display ("attack x2" or something)
-*/
-
 let startDisplay = document.querySelector("#startDisplay");
 let mainGame = document.querySelector("main");
 let resetGame = document.querySelector("#resetGame");
@@ -92,21 +86,31 @@ let team1Current = 0;
 let team2Current = 0;
 
 let team1Death = function() {
-    if (team1Current === 2) {
+	if (team1Current === 0) {
+		team1char1.remove();
+	} else if (team1Current === 1) {
+		team1char2.remove();
+	} else if (team1Current === 2) {
 		winnerDisplay.innerHTML = ("Team 2 wins!");
         console.log("team 1 dead lol")
+		team1char3.remove();
 		attackGuy.remove();
 		resetGame.style.visibility = "visible";
-    };
+	}
 };
 
 let team2Death = function() {
-    if (team2Current === 2) {
+	if (team2Current === 0) {
+		team2char1.remove();
+	} else if (team2Current === 1) {
+		team2char2.remove();
+	} else if (team2Current === 2) {
 		winnerDisplay.innerHTML = ("Team 1 wins!");
         console.log("team 2 dead lol")
+		team2char3.remove();
 		attackGuy.remove();
 		resetGame.style.visibility = "visible";
-    };
+	}
 };
 
 const chooseTeam = function() {
