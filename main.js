@@ -191,12 +191,20 @@ const resistanceList = {
     fire: ['grass', 'fire']
 }
 
-//[1, 2, 3].includes(2)
-// true
-//[1, 2, 3].includes('hello')
-// false
-
-//WEAKNESSES[target.type].includes(attacker.type)
+let critCalculator = function(damage) {
+        let crit = false;
+    
+        if (Math.round(Math.random() * 100) <= 15) {
+            crit = true;    
+        }
+        
+        if (crit == true) {
+            console.log("Critical hit!")
+            return damage * 2;
+        } else {
+            return damage;
+        }
+    };
 
 const damageCalculator = function(attacker, target, ) {
     let weak = false;
@@ -220,7 +228,7 @@ const damageCalculator = function(attacker, target, ) {
         damage = attacker.attack*0.5;
 		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack (damage reduced by half)!");
     }
-
+    damage = critCalculator(damage);
     console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
     return damage;
 };
