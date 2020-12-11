@@ -94,9 +94,9 @@ const weakList = {
 };
 
 const resistanceList = {
-    water: ['fire, water'],
-    grass: ['water, grass'],
-    fire: ['grass, fire']
+    water: ['fire', 'water'],
+    grass: ['water', 'grass'],
+    fire: ['grass', 'fire']
 }
 
 //[1, 2, 3].includes(2)
@@ -112,19 +112,19 @@ const damageCalculator = function(attacker, target, ) {
     let damage = 0;
     
     if (weakList[target.type].includes(attacker.type)) {
-        let weak = true;
+        weak = true;
     }
     
     if (resistanceList[target.type].includes(attacker.type)) {
-        let resistant = true;
+        resistant = true;
     } 
     
         if (weak === false && resistant === false) {
-            let damage = attacker.attack;
+            damage = attacker.attack;
         } else if (weak === true && resistant === false) {
-            let damage = attacker.attack*2;
+            damage = attacker.attack*2;
         } else if (weak === false && resistant === true) {
-            let damage = attacker.attack*0.5;
+            damage = attacker.attack*0.5;
         }
     
     console.log(weak, resistant);
