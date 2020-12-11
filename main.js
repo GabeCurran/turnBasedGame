@@ -6,37 +6,31 @@ const characterList = [
     {
 		name: "Billy",
 		HP: 200,
-		speed: 75,
         attack: 25
 	},
 	{
 		name: "Bob",
 		HP: 100,
-		speed: 75,
         attack: 25
 	},
 	{
 		name: "Joe",
 		HP: 100,
-		speed: 75,
         attack: 25
 	},
 	{
 		name: "Alpha",
 		HP: 100,
-		speed: 75,
         attack: 25
 	},
 	{
 		name: "Bravo",
 		HP: 100,
-		speed: 75,
         attack: 25
 	},
 	{
 		name: "Charlie",
 		HP: 100,
-		speed: 75,
         attack: 25
 	}
 ];
@@ -50,13 +44,13 @@ let team1Current = 0;
 let team2Current = 0;
 
 let team1Death = function() {
-    if (team1Current === 2) {
+    if (team1Current === 3) {
         console.log("team 1 dead lol")
     };
 };
 
 let team2Death = function() {
-    if (team2Current === 2) {
+    if (team2Current === 3) {
         console.log("team 2 dead lol")
     };
 };
@@ -77,14 +71,12 @@ const chooseTeam = function() {
 
 const makeTeam1 = function() {
 	team1 = chooseTeam();
-	console.log("makeTeam1");
 	chooseTeam1Button.remove();
 	return team1;
 }
 
 const makeTeam2 = function() {
 	team2 = chooseTeam();
-	console.log("makeTeam2");
 	chooseTeam2Button.remove();
 	return team2;
 }
@@ -97,7 +89,6 @@ const attackCharacter = function() {
         attackDamage(team1[team1Current].attack, team2[team2Current]);
         turn = 0;
     };
-    console.log(turn);
 };
 
 // function for subtracting a character's HP due to an attack
@@ -110,12 +101,12 @@ const attackDamage = function(attackStrength, target) {
 		target.HP = 0; // so HP can't go into the negatives
 		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
         if (turn === 0) {
-            team1Death();
             team1Current++;
+            team1Death();
             turn = 1;
         } else {
-            team2Death();
             team2Current++;
+            team2Death();
             turn = 0;
         };
 	};
