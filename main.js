@@ -9,6 +9,13 @@ Cool ideas:
 
 let startDisplay = document.querySelector("#startDisplay");
 let mainGame = document.querySelector("main");
+let resetGame = document.querySelector("#resetGame");
+
+const refresh = function() {
+	location.reload();
+}
+
+resetGame.addEventListener("click", refresh);
 
 // player teams
 let team1char1 = document.querySelector("#team1char1");
@@ -21,7 +28,11 @@ let team2char3 = document.querySelector("#team2char3");
 
 // visuals on the field
 let currentPlayer1 = document.querySelector("#currentPlayer1");
+let current1health = document.querySelector("#current1health");
+
 let currentPlayer2 = document.querySelector("#currentPlayer2");
+let current2health = document.querySelector("#current2health");
+
 let team1div = document.querySelector("#team1");
 let team2div = document.querySelector("#team2");
 
@@ -84,6 +95,8 @@ let team1Death = function() {
     if (team1Current === 2) {
 		winnerDisplay.innerHTML = ("Team 2 wins!");
         console.log("team 1 dead lol")
+		attackGuy.remove();
+		resetGame.style.visibility = "visible";
     };
 };
 
@@ -91,6 +104,8 @@ let team2Death = function() {
     if (team2Current === 2) {
 		winnerDisplay.innerHTML = ("Team 1 wins!");
         console.log("team 2 dead lol")
+		attackGuy.remove();
+		resetGame.style.visibility = "visible";
     };
 };
 
@@ -148,9 +163,11 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 
 const setCurrentVisuals = function() {
 	currentPlayer1.innerHTML = team1[team1Current].name;
+	current1health.innerHTML = team1[team1Current].HP;
 	pickColor(currentPlayer1, team1, team1Current);
 
 	currentPlayer2.innerHTML = team2[team2Current].name;
+	current2health.innerHTML = team2[team2Current].HP;
 	pickColor(currentPlayer2, team2, team2Current);
 }
 
@@ -190,10 +207,10 @@ const damageCalculator = function(attacker, target, ) {
         damage = attacker.attack;
     } else if (weak && !resistant) {
 		damage = attacker.attack*2;
-		addOnDisplay.innerHTML = (target.name + " takes extra damage from a " + attacker.type + " type!");
+		addOnDisplay.innerHTML = (target.name + " takes double damage from a " + attacker.type + " type!");
     } else if (!weak && resistant) {
         damage = attacker.attack*0.5;
-		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack!");
+		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack (damage reduced by half)!");
     }
 
     console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
@@ -226,10 +243,12 @@ const attack = function(attacker, target) {
         if (turn === 0) {
             team1Death();
 			team1Current++;
+			winnerDisplay.innerHTML = (team1[team1Current].name + " is newest on the field!");
             turn = 1;
         } else {
             team2Death();
 			team2Current++;
+			winnerDisplay.innerHTML = (team2[team2Current].name + " is newest on the field!");
             turn = 0;
         };
 	};
