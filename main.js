@@ -118,11 +118,15 @@ const chooseTeam = function() {
 
     for (let counter = 1; counter <= 3; counter++) {
 		let chosenChar = {};
-        let choice = prompt("Choose your " + counter + " member!\nPick their number!");
-		choice--;
-		Object.assign(chosenChar, characterList[choice]);
+        let choice = -1
+        while (!choice || isNaN(choice) || typeof(choice) == 'string' || choice < 0 || choice > 6) {
+               choice = Number(prompt("Choose your " + counter + " member!\nPick their number!"));
+            }
+            
+        choice--;
+        Object.assign(chosenChar, characterList[choice]);
         teamArray.push(chosenChar);
-		console.log(chosenChar);
+        console.log(chosenChar);
     };
     return teamArray;
 };
