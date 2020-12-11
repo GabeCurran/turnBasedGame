@@ -1,6 +1,10 @@
 // Character list is an array. The array represents a single team.
 // Characters themselves are objects. The object name will be the character's name, and each key/property unit will be a stat (e.g., HP: 100;)
 
+let actionDisplay = document.querySelector("#actionDisplay");
+let healthDisplay = document.querySelector("#healthDisplay");
+let winnerDisplay = document.querySelector("#winnerDisplay");
+
 
 const characterList = [
     {
@@ -51,12 +55,14 @@ let team2Current = 0;
 
 let team1Death = function() {
     if (team1Current === 2) {
+		winnerDisplay.innerHTML = ("Team 2 wins!");
         console.log("team 1 dead lol")
     };
 };
 
 let team2Death = function() {
     if (team2Current === 2) {
+		winnerDisplay.innerHTML = ("Team 1 wins!");
         console.log("team 2 dead lol")
     };
 };
@@ -105,21 +111,21 @@ const attackCharacter = function() {
 
 // function for subtracting a character's HP due to an attack
 const attackDamage = function(attacker, target) {
-	console.log(attacker.name + " attacks " + target.name + "!");
+	actionDisplay.innerHTML = (attacker.name + " attacks " + target.name + "!");
 	let originalHP = target.HP;
 	if (originalHP > attacker.attack) {
 		target.HP -= attacker.attack;
-		console.log(target.name + "'s HP drops to " + target.HP + "!");
+		healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
 	} else if (originalHP <= attacker.attack) {
 		target.HP = 0; // so HP can't go into the negatives
-		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
+		healthDisplay.innerHTML = (target.name + " is defeated!");
         if (turn === 0) {
-			team1Current++;
             team1Death();
+			team1Current++;
             turn = 1;
         } else {
-			team2Current++;
             team2Death();
+			team2Current++;
             turn = 0;
         };
 	};
