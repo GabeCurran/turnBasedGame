@@ -44,9 +44,11 @@ main {
 	padding: 5px;
 }
 
-.attackButtons {
-	display: flex;
-	flex-direction: column;
+#attackGuy {
+	visibility: hidden;
+}
+
+#chooseTeam2Button {
 	visibility: hidden;
 }
 

@@ -79,6 +79,7 @@ const makeTeam1 = function() {
 	team1 = chooseTeam();
 	console.log("makeTeam1");
 	chooseTeam1Button.remove();
+	chooseTeam2Button.style.visibility = "visible";
 	return team1;
 }
 
@@ -86,36 +87,39 @@ const makeTeam2 = function() {
 	team2 = chooseTeam();
 	console.log("makeTeam2");
 	chooseTeam2Button.remove();
+	attackGuy.style.visibility = "visible";
 	return team2;
 }
 
 const attackCharacter = function() {
     if (turn === 0) {
-        attackDamage(team2[team2Current].attack, team1[team1Current]);
+        attackDamage(team2[team2Current], team1[team1Current]);
         turn = 1;
+		console.log("Team 1's turn");
     } else {
-        attackDamage(team1[team1Current].attack, team2[team2Current]);
+        attackDamage(team1[team1Current], team2[team2Current]);
         turn = 0;
+		console.log("Team 2's turn");
     };
-    console.log(turn);
 };
 
 // function for subtracting a character's HP due to an attack
-const attackDamage = function(attackStrength, target) {
+const attackDamage = function(attacker, target) {
+	console.log(attacker.name + " attacks " + target.name + "!");
 	let originalHP = target.HP;
-	if (originalHP > attackStrength) {
-		target.HP -= attackStrength;
-		console.log(target.name + "'s HP went from " + originalHP + " to " + target.HP + "!"); // display on page instead of doing console.log()
-	} else if (originalHP <= attackStrength) {
+	if (originalHP > attacker.attack) {
+		target.HP -= attacker.attack;
+		console.log(target.name + "'s HP drops to " + target.HP + "!");
+	} else if (originalHP <= attacker.attack) {
 		target.HP = 0; // so HP can't go into the negatives
 		console.log(target.name + " is defeated!"); // display on page instead of doing console.log()
         if (turn === 0) {
+			team1Current++;
             team1Death();
-            team1Current++;
             turn = 1;
         } else {
+			team2Current++;
             team2Death();
-            team2Current++;
             turn = 0;
         };
 	};
