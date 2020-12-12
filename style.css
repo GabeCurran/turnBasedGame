@@ -124,3 +124,17 @@ button {
 #resetGame {
 	visibility: hidden;
 }
+
+/* Mobile Styles */
+@media only screen and (max-width: 800px) {
+    
+        #startDisplay {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            height: 100vh;
+            justify-content: flex-end;
+            align-content: center;
+    }
+    
+}
