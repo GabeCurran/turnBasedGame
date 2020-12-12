@@ -33,6 +33,7 @@ let team2div = document.querySelector("#team2");
 
 // action descriptions
 let actionDisplay = document.querySelector("#actionDisplay");
+let critDisplay = document.querySelector('#critDisplay')
 let addOnDisplay = document.querySelector("#addOnDisplay");
 let healthDisplay = document.querySelector("#healthDisplay");
 let winnerDisplay = document.querySelector("#winnerDisplay");
@@ -192,6 +193,8 @@ const resistanceList = {
 }
 
 let critCalculator = function(damage) {
+        
+        critDisplay.innerHTML = ''
         let crit = false;
     
         if (Math.round(Math.random() * 100) <= 15) {
@@ -199,7 +202,7 @@ let critCalculator = function(damage) {
         }
         
         if (crit == true) {
-            console.log("Critical hit!")
+            critDisplay.innerHTML = 'It was a Critical Hit,\nthe damage dealt was doubled!'
             return damage * 2;
         } else {
             return damage;
