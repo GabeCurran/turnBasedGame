@@ -4,6 +4,9 @@
 let startDisplay = document.querySelector("#startDisplay");
 let mainGame = document.querySelector("main");
 let resetGame = document.querySelector("#resetGame");
+let playingField = document.querySelector('#playingField');
+let team1Header = document.querySelector('#team1Header');
+let team2Header = document.querySelector('#team2Header');
 
 const refresh = function() {
 	location.reload();
@@ -36,6 +39,7 @@ let actionDisplay = document.querySelector("#actionDisplay");
 let critDisplay = document.querySelector('#critDisplay')
 let addOnDisplay = document.querySelector("#addOnDisplay");
 let healthDisplay = document.querySelector("#healthDisplay");
+let sentOut = document.querySelector("#sentOut");
 let winnerDisplay = document.querySelector("#winnerDisplay");
 
 
@@ -96,6 +100,10 @@ let team1Death = function() {
         console.log("team 1 dead lol")
 		team1char3.remove();
 		attackGuy.remove();
+        currentPlayer1.remove();
+        current1health.remove();
+        team1Header.remove();
+        sentOut.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -110,6 +118,10 @@ let team2Death = function() {
         console.log("team 2 dead lol")
 		team2char3.remove();
 		attackGuy.remove();
+        currentPlayer2.remove();
+        current2health.remove();
+        team2Header.remove();
+        sentOut.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -262,12 +274,12 @@ const attack = function(attacker, target) {
         if (turn === 0) {
             team1Death();
 			team1Current++;
-			winnerDisplay.innerHTML = (team1[team1Current].name + " is newest on the field!");
+			sentOut.innerHTML = "Team 1's " + (team1[team1Current].name + " is newest on the field!");
             turn = 1;
         } else {
             team2Death();
 			team2Current++;
-			winnerDisplay.innerHTML = (team2[team2Current].name + " is newest on the field!");
+			sentOut.innerHTML = "Team 2's " + (team2[team2Current].name + " is newest on the field!");
             turn = 0;
         };
 	};

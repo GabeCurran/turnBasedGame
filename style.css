@@ -106,10 +106,6 @@ button {
 	margin-top: 20px;
 }
 
-.healthDisplay {
-	color: green;
-}
-
 .currentPlayer {
     display: flex;
     justify-content: center;
@@ -117,6 +113,27 @@ button {
 	height: 70px;
 	width: 70px;
 	background-color: grey;
+}
+
+.teamHeader {
+    font-size: 1.3em;
+    height: 30px;
+}
+
+.healthDisplay {
+	color: #1dcf4c;
+    display: flex;
+    align-items: center;
+    font-size: 1.6em;
+    font-weight: 900;
+    height: 50px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#winnerDisplay {
+    font-size: 2em;
+    font-weight: 700;
 }
 
 #rosterContainer {
