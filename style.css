@@ -158,6 +158,12 @@ button {
         height: 400px;
     }
     
+    .teams {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
     #startDisplay {
         display: flex;
         flex-direction: column;
@@ -169,11 +175,10 @@ button {
     
     #rosterContainer {
         width: 100%;
-        height: 150px;
+        height: 200px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
     }
     
     .descStuff {
