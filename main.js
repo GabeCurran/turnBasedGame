@@ -51,19 +51,19 @@ let winnerDisplay = document.querySelector("#winnerDisplay");
 
 const characterList = [
     {
-		name: "Billy",
+		name: "Ekbrilo",
 		HP: 200,
         attack: 25,
         type: 'fire'
 	},
 	{
-		name: "Bob",
+		name: "Akvo",
 		HP: 200,
         attack: 25,
         type: 'water'
 	},
 	{
-		name: "Phrog",
+		name: "Herbisto",
 		HP: 200,
         attack: 25,
         type: 'grass'
