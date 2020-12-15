@@ -26,9 +26,11 @@ let team2char3 = document.querySelector("#team2char3");
 // visuals on the field
 let currentPlayer1 = document.querySelector("#currentPlayer1");
 let current1health = document.querySelector("#current1health");
+let current1HPbar = document.querySelector("#current1HPbar");
 
 let currentPlayer2 = document.querySelector("#currentPlayer2");
 let current2health = document.querySelector("#current2health");
+let current2HPbar = document.querySelector("#current2HPbar");
 
 let team1div = document.querySelector("#team1");
 let team2div = document.querySelector("#team2");
@@ -97,13 +99,14 @@ let team1Death = function() {
 		team1char2.remove();
 	} else if (team1Current === 2) {
 		winnerDisplay.innerHTML = ("Team 2 wins!");
-        console.log("team 1 dead lol")
+        //console.log("team 1 dead lol")
 		team1char3.remove();
 		attackGuy.remove();
         currentPlayer1.remove();
         current1health.remove();
         team1Header.remove();
         sentOut.remove();
+		current1HPbar.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -115,13 +118,14 @@ let team2Death = function() {
 		team2char2.remove();
 	} else if (team2Current === 2) {
 		winnerDisplay.innerHTML = ("Team 1 wins!");
-        console.log("team 2 dead lol")
+        //console.log("team 2 dead lol");
 		team2char3.remove();
 		attackGuy.remove();
         currentPlayer2.remove();
         current2health.remove();
         team2Header.remove();
         sentOut.remove();
+		current2HPbar.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -135,11 +139,11 @@ const chooseTeam = function() {
         while (!choice || isNaN(choice) || typeof(choice) == 'string' || choice < 0 || choice > 6) {
                choice = Number(prompt("Choose your " + counter + " member!\nPick their number!"));
             }
-            
+
         choice--;
         Object.assign(chosenChar, characterList[choice]);
         teamArray.push(chosenChar);
-        console.log(chosenChar);
+        //console.log(chosenChar);
     };
     return teamArray;
 };
@@ -156,6 +160,7 @@ const makeTeam2 = function() {
 	chooseTeam2Button.remove();
 	setTeamVisuals();
 	setCurrentVisuals();
+	startHPbars();
 	return team2;
 }
 
@@ -182,13 +187,26 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 	}
 };
 
+const startHPbars = function() {
+	current1HPbar.max = team1[team1Current].HP;
+	current1HPbar.value = team1[team1Current].HP;
+
+	current2HPbar.max = team2[team2Current].HP;
+	current2HPbar.value = team2[team2Current].HP;
+
+	//console.log("character 1: " + current1HPbar.max);
+	//console.log("character 2: " + current2HPbar.max);
+}
+
 const setCurrentVisuals = function() {
 	currentPlayer1.innerHTML = team1[team1Current].name;
 	current1health.innerHTML = team1[team1Current].HP;
+	current1HPbar.value = team1[team1Current].HP;
 	pickColor(currentPlayer1, team1, team1Current);
 
 	currentPlayer2.innerHTML = team2[team2Current].name;
 	current2health.innerHTML = team2[team2Current].HP;
+	current2HPbar.value = team2[team2Current].HP;
 	pickColor(currentPlayer2, team2, team2Current);
 }
 
@@ -205,14 +223,14 @@ const resistanceList = {
 }
 
 let critCalculator = function(damage) {
-        
+
         critDisplay.innerHTML = ''
         let crit = false;
-    
+
         if (Math.round(Math.random() * 100) <= 15) {
-            crit = true;    
+            crit = true;
         }
-        
+
         if (crit == true) {
             critDisplay.innerHTML = 'It was a Critical Hit,\nthe damage dealt was doubled!'
             return damage * 2;
@@ -244,7 +262,7 @@ const damageCalculator = function(attacker, target, ) {
 		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack (damage reduced by half)!");
     }
     damage = critCalculator(damage);
-    console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
+    //console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
     return damage;
 };
 
@@ -252,11 +270,11 @@ const turnCalculator = function() {
     if (turn === 0) {
         attack(team2[team2Current], team1[team1Current]);
         turn = 1;
-		console.log("Team 1's turn");
+		//console.log("Team 1's turn");
     } else {
         attack(team1[team1Current], team2[team2Current]);
         turn = 0;
-		console.log("Team 2's turn");
+		//console.log("Team 2's turn");
     };
 };
 
