@@ -12,7 +12,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-	visibility: hidden;
+	visibility: hidden; /* We don't want the game to show up before the game actually starts */
 }
 
 #startDisplay {
@@ -58,19 +58,19 @@ button {
 
 .fire {
 	padding: 5px;
-	border: 2px solid #FF4918;
+	border: 2px solid #FF4918; /* orange */
 	color: #FF4918;
 }
 
 .water {
 	padding: 5px;
-	border: 2px solid #00D1C7;
+	border: 2px solid #00D1C7; /* light blue */
 	color: #00D1C7;
 }
 
 .grass {
 	padding: 5px;
-	border: 2px solid #00AC00;
+	border: 2px solid #00AC00; /* green */
 	color: #00AC00;
 }
 
@@ -124,15 +124,24 @@ button {
     height: 30px;
 }
 
-.healthDisplay {
-	color: #1dcf4c;
-    display: flex;
-    align-items: center;
-    font-size: 1.6em;
-    font-weight: 900;
-    height: 50px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+.healthSlashes {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	width: 100px;
+	margin: 10px;
+}
+
+.currentHealthDisplay {
+	font-size: 1.5em;
+	font-family: Verdana;
+	color: #008022;
+}
+
+.maxHealthDisplay {
+	font-size: 1.1em;
+	font-family: Verdana;
+	color: #008022;
 }
 
 #winnerDisplay {
@@ -152,18 +161,18 @@ button {
 
 /* Mobile Styles */
 @media only screen and (max-width: 700px) {
-    
+
     #gameScreen {
         margin-top: 2em;
         height: 400px;
     }
-    
+
     .teams {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    
+
     #startDisplay {
         display: flex;
         flex-direction: column;
@@ -172,7 +181,7 @@ button {
         justify-content: flex-end;
         align-content: center;
     }
-    
+
     #rosterContainer {
         width: 100%;
         height: 200px;
@@ -180,14 +189,14 @@ button {
         flex-direction: row;
         justify-content: space-around;
     }
-    
+
     .descStuff {
         width: 250px;
         height: 350px;
     }
-    
+
     .descStuff > div {
         margin: 5px 0 5px 0;
     }
-    
+
 }

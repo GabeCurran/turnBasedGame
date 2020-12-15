@@ -8,7 +8,7 @@ let playingField = document.querySelector('#playingField');
 let team1Header = document.querySelector('#team1Header');
 let team2Header = document.querySelector('#team2Header');
 
-const refresh = function() {
+const refresh = function() { // refreshes the page
 	location.reload();
 }
 
@@ -24,11 +24,18 @@ let team2char2 = document.querySelector("#team2char2");
 let team2char3 = document.querySelector("#team2char3");
 
 // visuals on the field
+let current1 = document.querySelector("#current1");
+let current2 = document.querySelector("#current2");
+
 let currentPlayer1 = document.querySelector("#currentPlayer1");
 let current1health = document.querySelector("#current1health");
+let current1maxHealth = document.querySelector("#current1maxHealth");
+let current1HPbar = document.querySelector("#current1HPbar");
 
 let currentPlayer2 = document.querySelector("#currentPlayer2");
 let current2health = document.querySelector("#current2health");
+let current2maxHealth = document.querySelector("#current2maxHealth");
+let current2HPbar = document.querySelector("#current2HPbar");
 
 let team1div = document.querySelector("#team1");
 let team2div = document.querySelector("#team2");
@@ -38,7 +45,6 @@ let team2div = document.querySelector("#team2");
 let actionDisplay = document.querySelector("#actionDisplay");
 let critDisplay = document.querySelector('#critDisplay')
 let addOnDisplay = document.querySelector("#addOnDisplay");
-let healthDisplay = document.querySelector("#healthDisplay");
 let sentOut = document.querySelector("#sentOut");
 let winnerDisplay = document.querySelector("#winnerDisplay");
 
@@ -84,43 +90,39 @@ const characterList = [
 
 let turn = 0;
 
+// initializing the teams
 let team1;
 let team2;
 
+// initializing indices of team arrays
 let team1Current = 0;
 let team2Current = 0;
 
-let team1Death = function() {
+let team1Death = function() { // What happens when a member of team 1 is eliminated
 	if (team1Current === 0) {
-		team1char1.remove();
+		team1char1.remove(); // removes the character icon from the "waiting area"
 	} else if (team1Current === 1) {
 		team1char2.remove();
 	} else if (team1Current === 2) {
 		winnerDisplay.innerHTML = ("Team 2 wins!");
-        console.log("team 1 dead lol")
 		team1char3.remove();
 		attackGuy.remove();
-        currentPlayer1.remove();
-        current1health.remove();
-        team1Header.remove();
+        current1.remove();
         sentOut.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
 
-let team2Death = function() {
+let team2Death = function() { // What happens when a member of team 2 is eliminated
 	if (team2Current === 0) {
 		team2char1.remove();
 	} else if (team2Current === 1) {
 		team2char2.remove();
 	} else if (team2Current === 2) {
 		winnerDisplay.innerHTML = ("Team 1 wins!");
-        console.log("team 2 dead lol")
 		team2char3.remove();
 		attackGuy.remove();
-        currentPlayer2.remove();
-        current2health.remove();
-        team2Header.remove();
+        current2.remove();
         sentOut.remove();
 		resetGame.style.visibility = "visible";
 	}
@@ -130,16 +132,18 @@ const chooseTeam = function() {
     let teamArray = [];
 
     for (let counter = 1; counter <= 3; counter++) {
-		let chosenChar = {};
-        let choice = -1
+		let chosenChar = {}; // initializing as blank object
+        let choice = -1 // to match index of characterList
+
+		// Make these into buttons instead!
         while (!choice || isNaN(choice) || typeof(choice) == 'string' || choice < 0 || choice > 6) {
                choice = Number(prompt("Choose your " + counter + " member!\nPick their number!"));
             }
-            
+		// ^^ Make these into buttons instead! ^^
+
         choice--;
         Object.assign(chosenChar, characterList[choice]);
         teamArray.push(chosenChar);
-        console.log(chosenChar);
     };
     return teamArray;
 };
@@ -151,11 +155,12 @@ const makeTeam1 = function() {
 	return team1;
 }
 
-const makeTeam2 = function() {
+const makeTeam2 = function() { // the unofficial "start the game" function
 	team2 = chooseTeam();
 	chooseTeam2Button.remove();
 	setTeamVisuals();
 	setCurrentVisuals();
+	startHPbars();
 	return team2;
 }
 
@@ -172,7 +177,7 @@ const setTeamVisuals = function() {
 	team2char3.innerHTML = team2[2].name;
 }
 
-const pickColor = function(currentPlayerDiv, team, currentPlayer) {
+const pickColor = function(currentPlayerDiv, team, currentPlayer) { // sets character colors according to type
 	if (team[currentPlayer].type == "fire") {
 		currentPlayerDiv.style.backgroundColor = "#FF824C";
 	} else if (team[currentPlayer].type == "water") {
@@ -182,13 +187,31 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 	}
 };
 
-const setCurrentVisuals = function() {
+const startHPbars = function() { // setting up the HP bars at beginning of match
+	current1maxHealth.innerHTML = ("/" + team1[team1Current].HP);
+	current1HPbar.max = team1[team1Current].HP;
+	current1HPbar.value = team1[team1Current].HP;
+	current1HPbar.optimum = (team1[team1Current].HP/2)+1;
+	current1HPbar.high = team1[team1Current].HP/2;
+	current1HPbar.low = (team1[team1Current].HP/4)+1;
+
+	current2maxHealth.innerHTML = ("/" + team2[team2Current].HP);
+	current2HPbar.max = team2[team2Current].HP;
+	current2HPbar.value = team2[team2Current].HP;
+	current2HPbar.optimum = (team2[team2Current].HP/2)+1;
+	current2HPbar.high = team2[team2Current].HP/2;
+	current2HPbar.low = (team2[team2Current].HP/4)+1;
+}
+
+const setCurrentVisuals = function() { // updates the playing field after each attack
 	currentPlayer1.innerHTML = team1[team1Current].name;
 	current1health.innerHTML = team1[team1Current].HP;
+	current1HPbar.value = team1[team1Current].HP;
 	pickColor(currentPlayer1, team1, team1Current);
 
 	currentPlayer2.innerHTML = team2[team2Current].name;
 	current2health.innerHTML = team2[team2Current].HP;
+	current2HPbar.value = team2[team2Current].HP;
 	pickColor(currentPlayer2, team2, team2Current);
 }
 
@@ -204,15 +227,15 @@ const resistanceList = {
     fire: ['grass', 'fire']
 }
 
-let critCalculator = function(damage) {
-        
+let critCalculator = function(damage) { // calculates critical hits
+
         critDisplay.innerHTML = ''
         let crit = false;
-    
+
         if (Math.round(Math.random() * 100) <= 15) {
-            crit = true;    
+            crit = true;
         }
-        
+
         if (crit == true) {
             critDisplay.innerHTML = 'It was a Critical Hit,\nthe damage dealt was doubled!'
             return damage * 2;
@@ -244,7 +267,6 @@ const damageCalculator = function(attacker, target, ) {
 		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack (damage reduced by half)!");
     }
     damage = critCalculator(damage);
-    console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
     return damage;
 };
 
@@ -252,11 +274,11 @@ const turnCalculator = function() {
     if (turn === 0) {
         attack(team2[team2Current], team1[team1Current]);
         turn = 1;
-		console.log("Team 1's turn");
+		// Team 1's turn now
     } else {
         attack(team1[team1Current], team2[team2Current]);
         turn = 0;
-		console.log("Team 2's turn");
+		// Team 2's turn now
     };
 };
 
@@ -267,10 +289,8 @@ const attack = function(attacker, target) {
 	let originalHP = target.HP;
 	if (originalHP > damage) {
 		target.HP -= damage;
-		healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
 	} else if (originalHP <= damage) {
 		target.HP = 0; // so HP can't go into the negatives
-		healthDisplay.innerHTML = (target.name + " is defeated!");
         if (turn === 0) {
             team1Death();
 			team1Current++;
