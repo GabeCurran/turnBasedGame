@@ -190,9 +190,15 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 const startHPbars = function() {
 	current1HPbar.max = team1[team1Current].HP;
 	current1HPbar.value = team1[team1Current].HP;
+	current1HPbar.optimum = (team1[team1Current].HP/2)+1;
+	current1HPbar.high = team1[team1Current].HP/2;
+	current1HPbar.low = (team1[team1Current].HP/4)+1;
 
 	current2HPbar.max = team2[team2Current].HP;
 	current2HPbar.value = team2[team2Current].HP;
+	current2HPbar.optimum = (team2[team2Current].HP/2)+1;
+	current2HPbar.high = team2[team2Current].HP/2;
+	current2HPbar.low = (team2[team2Current].HP/4)+1;
 
 	//console.log("character 1: " + current1HPbar.max);
 	//console.log("character 2: " + current2HPbar.max);
