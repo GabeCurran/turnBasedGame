@@ -12,7 +12,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-	visibility: hidden;
+	visibility: hidden; /* We don't want the game to show up before the game actually starts */
 }
 
 #startDisplay {
@@ -58,19 +58,19 @@ button {
 
 .fire {
 	padding: 5px;
-	border: 2px solid #FF4918;
+	border: 2px solid #FF4918; /* orange */
 	color: #FF4918;
 }
 
 .water {
 	padding: 5px;
-	border: 2px solid #00D1C7;
+	border: 2px solid #00D1C7; /* light blue */
 	color: #00D1C7;
 }
 
 .grass {
 	padding: 5px;
-	border: 2px solid #00AC00;
+	border: 2px solid #00AC00; /* green */
 	color: #00AC00;
 }
 
@@ -143,19 +143,6 @@ button {
 	font-family: Verdana;
 	color: #008022;
 }
-
-/*
-.healthDisplay {
-	color: #1dcf4c;
-    display: flex;
-    align-items: center;
-    font-size: 1.6em;
-    font-weight: 900;
-    height: 50px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-}
-*/
 
 #winnerDisplay {
     font-size: 2em;

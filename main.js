@@ -8,7 +8,7 @@ let playingField = document.querySelector('#playingField');
 let team1Header = document.querySelector('#team1Header');
 let team2Header = document.querySelector('#team2Header');
 
-const refresh = function() {
+const refresh = function() { // refreshes the page
 	location.reload();
 }
 
@@ -90,20 +90,21 @@ const characterList = [
 
 let turn = 0;
 
+// initializing the teams
 let team1;
 let team2;
 
+// initializing indices of team arrays
 let team1Current = 0;
 let team2Current = 0;
 
-let team1Death = function() {
+let team1Death = function() { // What happens when a member of team 1 is eliminated
 	if (team1Current === 0) {
-		team1char1.remove();
+		team1char1.remove(); // removes the character icon from the "waiting area"
 	} else if (team1Current === 1) {
 		team1char2.remove();
 	} else if (team1Current === 2) {
 		winnerDisplay.innerHTML = ("Team 2 wins!");
-        //console.log("team 1 dead lol")
 		team1char3.remove();
 		attackGuy.remove();
         current1.remove();
@@ -112,7 +113,7 @@ let team1Death = function() {
 	}
 };
 
-let team2Death = function() {
+let team2Death = function() { // What happens when a member of team 2 is eliminated
 	if (team2Current === 0) {
 		team2char1.remove();
 	} else if (team2Current === 1) {
@@ -131,16 +132,18 @@ const chooseTeam = function() {
     let teamArray = [];
 
     for (let counter = 1; counter <= 3; counter++) {
-		let chosenChar = {};
-        let choice = -1
+		let chosenChar = {}; // initializing as blank object
+        let choice = -1 // to match index of characterList
+
+		// Make these into buttons instead!
         while (!choice || isNaN(choice) || typeof(choice) == 'string' || choice < 0 || choice > 6) {
                choice = Number(prompt("Choose your " + counter + " member!\nPick their number!"));
             }
+		// ^^ Make these into buttons instead! ^^
 
         choice--;
         Object.assign(chosenChar, characterList[choice]);
         teamArray.push(chosenChar);
-        //console.log(chosenChar);
     };
     return teamArray;
 };
@@ -152,7 +155,7 @@ const makeTeam1 = function() {
 	return team1;
 }
 
-const makeTeam2 = function() {
+const makeTeam2 = function() { // the unofficial "start the game" function
 	team2 = chooseTeam();
 	chooseTeam2Button.remove();
 	setTeamVisuals();
@@ -174,7 +177,7 @@ const setTeamVisuals = function() {
 	team2char3.innerHTML = team2[2].name;
 }
 
-const pickColor = function(currentPlayerDiv, team, currentPlayer) {
+const pickColor = function(currentPlayerDiv, team, currentPlayer) { // sets character colors according to type
 	if (team[currentPlayer].type == "fire") {
 		currentPlayerDiv.style.backgroundColor = "#FF824C";
 	} else if (team[currentPlayer].type == "water") {
@@ -184,7 +187,7 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 	}
 };
 
-const startHPbars = function() {
+const startHPbars = function() { // setting up the HP bars at beginning of match
 	current1maxHealth.innerHTML = ("/" + team1[team1Current].HP);
 	current1HPbar.max = team1[team1Current].HP;
 	current1HPbar.value = team1[team1Current].HP;
@@ -198,12 +201,9 @@ const startHPbars = function() {
 	current2HPbar.optimum = (team2[team2Current].HP/2)+1;
 	current2HPbar.high = team2[team2Current].HP/2;
 	current2HPbar.low = (team2[team2Current].HP/4)+1;
-
-	//console.log("character 1: " + current1HPbar.max);
-	//console.log("character 2: " + current2HPbar.max);
 }
 
-const setCurrentVisuals = function() {
+const setCurrentVisuals = function() { // updates the playing field after each attack
 	currentPlayer1.innerHTML = team1[team1Current].name;
 	current1health.innerHTML = team1[team1Current].HP;
 	current1HPbar.value = team1[team1Current].HP;
@@ -227,7 +227,7 @@ const resistanceList = {
     fire: ['grass', 'fire']
 }
 
-let critCalculator = function(damage) {
+let critCalculator = function(damage) { // calculates critical hits
 
         critDisplay.innerHTML = ''
         let crit = false;
@@ -267,7 +267,6 @@ const damageCalculator = function(attacker, target, ) {
 		addOnDisplay.innerHTML = (target.name + " resists the " + attacker.type + " attack (damage reduced by half)!");
     }
     damage = critCalculator(damage);
-    //console.log("target: " + target.name + " weak = " + weak + " resistant = " + resistant);
     return damage;
 };
 
@@ -275,11 +274,11 @@ const turnCalculator = function() {
     if (turn === 0) {
         attack(team2[team2Current], team1[team1Current]);
         turn = 1;
-		//console.log("Team 1's turn");
+		// Team 1's turn now
     } else {
         attack(team1[team1Current], team2[team2Current]);
         turn = 0;
-		//console.log("Team 2's turn");
+		// Team 2's turn now
     };
 };
 
