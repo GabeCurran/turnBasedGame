@@ -31,27 +31,33 @@
 			<div id="gameScreen">
 
 				<div id="playingField">
-					<div class="current">
+					<div class="current" id="current1">
                         <p class='teamHeader' id='team1Header'>Team 1</p>
+
 						<div id="currentPlayer1" class="currentPlayer">
                             current 1
 						</div>
-						<div id="current1health" class="healthDisplay">
+
+						<div class="healthSlashes">
+							<div id="current1health" class="currentHealthDisplay"></div>
+							<div id="current1maxHealth" class="maxHealthDisplay"></div>
 						</div>
 
 						<meter id="current1HPbar" max="100" value="100"></meter>
 
-
 					</div>
 
-					<div class="current">
+					<div class="current" id="current2">
                         <p class='teamHeader' id='team2Header'>Team 2</p>
 
 						<div id="currentPlayer2" class="currentPlayer">
 							current 2
 						</div>
 
-						<div id="current2health" class="healthDisplay"></div>
+						<div class="healthSlashes">
+							<div id="current2health" class="currentHealthDisplay"></div>
+							<div id="current2maxHealth" class="maxHealthDisplay"></div>
+						</div>
 
 						<meter id="current2HPbar" max="100" value="100"></meter>
 
@@ -95,7 +101,6 @@
 				<div id="actionDisplay"></div>
                 <div id='critDisplay'></div>
 				<div id="addOnDisplay"></div>
-				<div id="healthDisplay"></div>
                 <div id='sentOut'></div>
 				<div id="winnerDisplay"></div>
 			</div>

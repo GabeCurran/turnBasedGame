@@ -24,12 +24,17 @@ let team2char2 = document.querySelector("#team2char2");
 let team2char3 = document.querySelector("#team2char3");
 
 // visuals on the field
+let current1 = document.querySelector("#current1");
+let current2 = document.querySelector("#current2");
+
 let currentPlayer1 = document.querySelector("#currentPlayer1");
 let current1health = document.querySelector("#current1health");
+let current1maxHealth = document.querySelector("#current1maxHealth");
 let current1HPbar = document.querySelector("#current1HPbar");
 
 let currentPlayer2 = document.querySelector("#currentPlayer2");
 let current2health = document.querySelector("#current2health");
+let current2maxHealth = document.querySelector("#current2maxHealth");
 let current2HPbar = document.querySelector("#current2HPbar");
 
 let team1div = document.querySelector("#team1");
@@ -40,7 +45,6 @@ let team2div = document.querySelector("#team2");
 let actionDisplay = document.querySelector("#actionDisplay");
 let critDisplay = document.querySelector('#critDisplay')
 let addOnDisplay = document.querySelector("#addOnDisplay");
-let healthDisplay = document.querySelector("#healthDisplay");
 let sentOut = document.querySelector("#sentOut");
 let winnerDisplay = document.querySelector("#winnerDisplay");
 
@@ -102,11 +106,8 @@ let team1Death = function() {
         //console.log("team 1 dead lol")
 		team1char3.remove();
 		attackGuy.remove();
-        currentPlayer1.remove();
-        current1health.remove();
-        team1Header.remove();
+        current1.remove();
         sentOut.remove();
-		current1HPbar.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -118,14 +119,10 @@ let team2Death = function() {
 		team2char2.remove();
 	} else if (team2Current === 2) {
 		winnerDisplay.innerHTML = ("Team 1 wins!");
-        //console.log("team 2 dead lol");
 		team2char3.remove();
 		attackGuy.remove();
-        currentPlayer2.remove();
-        current2health.remove();
-        team2Header.remove();
+        current2.remove();
         sentOut.remove();
-		current2HPbar.remove();
 		resetGame.style.visibility = "visible";
 	}
 };
@@ -188,12 +185,14 @@ const pickColor = function(currentPlayerDiv, team, currentPlayer) {
 };
 
 const startHPbars = function() {
+	current1maxHealth.innerHTML = ("/" + team1[team1Current].HP);
 	current1HPbar.max = team1[team1Current].HP;
 	current1HPbar.value = team1[team1Current].HP;
 	current1HPbar.optimum = (team1[team1Current].HP/2)+1;
 	current1HPbar.high = team1[team1Current].HP/2;
 	current1HPbar.low = (team1[team1Current].HP/4)+1;
 
+	current2maxHealth.innerHTML = ("/" + team2[team2Current].HP);
 	current2HPbar.max = team2[team2Current].HP;
 	current2HPbar.value = team2[team2Current].HP;
 	current2HPbar.optimum = (team2[team2Current].HP/2)+1;
@@ -291,10 +290,8 @@ const attack = function(attacker, target) {
 	let originalHP = target.HP;
 	if (originalHP > damage) {
 		target.HP -= damage;
-		healthDisplay.innerHTML = (target.name + "'s HP drops to " + target.HP + "!");
 	} else if (originalHP <= damage) {
 		target.HP = 0; // so HP can't go into the negatives
-		healthDisplay.innerHTML = (target.name + " is defeated!");
         if (turn === 0) {
             team1Death();
 			team1Current++;
