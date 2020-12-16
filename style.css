@@ -2,6 +2,11 @@
     box-sizing: border-box; padding: 0; margin: 0;
 }
 
+@font-face {
+    font-family: 'PTSans';
+    src: url('typeface/PTSans/PTSans-Regular.ttf');
+}
+
 body {
     height: 0;
 }
@@ -47,34 +52,57 @@ button {
 #displayCharacters {
     display: flex;
     flex-direction: column;
-	height: 250px;
+	height: 540px;
+    padding: 10px;
+    background-color: #171717;
+    border: solid 3px gray;
 	justify-content: space-around;
 }
 
-#displayCharacters > p {
+button {
+    margin: 5px;
+}
+
+table {
+    font-size: 2em;
+    font-family: 'PTSans';
+}
+
+th {
+    color: lightgray;
+    font-size: 1.2em;
+    font-weight: 700;
     padding: 10px;
-    border: 2px solid gray;
+    border-bottom: 4px solid lightgray;
+}
+
+td {
+    padding: 15px 20px 10px 20px;
+    color: lightgray;
+    text-align: center;
+    border-bottom: 3px solid lightgray;
 }
 
 .fire {
-	padding: 5px;
-	border: 2px solid #FF4918; /* orange */
 	color: #FF4918;
 }
 
 .water {
-	padding: 5px;
-	border: 2px solid #00D1C7; /* light blue */
 	color: #00D1C7;
 }
 
 .grass {
-	padding: 5px;
-	border: 2px solid #00AC00; /* green */
 	color: #00AC00;
+}
+    
+.chooseTeams {
+    font-size: 1.4em;
+    width: 20vw;
+    min-width: 200px;
 }
 
 #gameScreen {
+    margin-top: 7vh;
 	display: flex;
 	flex-direction: column;
 	border: 4px solid grey;
@@ -96,6 +124,7 @@ button {
 }
 
 .current {
+    margin: 30px 0 10px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -150,6 +179,7 @@ button {
 }
 
 #rosterContainer {
+    margin-top: 10px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -181,8 +211,22 @@ button {
         justify-content: flex-end;
         align-content: center;
     }
+    
+    #displayCharacters {
+        height: 375px;
+    }
+    
+    table {
+        font-size: 1em;
+    }
+    
+    .chooseTeams {
+        font-size: 1.2em;
+        width: 40vw;
+    }
 
     #rosterContainer {
+        margin-top: 0;
         width: 100%;
         height: 200px;
         display: flex;
@@ -191,12 +235,36 @@ button {
     }
 
     .descStuff {
-        width: 250px;
-        height: 350px;
+        width: 400px;
+    }
+    
+    #winnerDisplay {
+        text-align: center;
     }
 
     .descStuff > div {
         margin: 5px 0 5px 0;
     }
 
+}
+
+
+@media only screen and (max-width: 430px) {
+    
+    #displayCharacters {
+        height: 275px;
+    }
+    
+    table {
+        font-size: 0.8em;
+    }
+    
+    th {
+        border-bottom: 3px solid lightgray;
+    }
+    
+    td {
+        padding: 5px;
+        border-bottom: 2px solid lightgray;
+    }
 }
