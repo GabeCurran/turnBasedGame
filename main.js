@@ -69,19 +69,19 @@ const characterList = [
         type: 'grass'
 	},
 	{
-		name: "Alpha",
+		name: "Kabo",
 		HP: 100,
         attack: 50,
         type: 'fire'
 	},
 	{
-		name: "Bravo",
+		name: "Calysto",
 		HP: 100,
         attack: 50,
         type: 'water'
 	},
 	{
-		name: "Charlie",
+		name: "Phrog",
 		HP: 100,
         attack: 50,
         type: 'grass'
