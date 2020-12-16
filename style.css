@@ -38,6 +38,18 @@ button {
 	display: flex;
 }
 
+meter::-webkit-meter-optimum-value {
+  background: #226e21;
+}
+
+meter::-webkit-meter-suboptimum-value {
+  background: gold;
+}
+
+meter::-webkit-meter-even-less-good-value {
+  background: crimson;
+}
+
 .teamChar {
 	display: flex;
 	border: 1px solid grey;
