@@ -63,7 +63,7 @@ const characterList = [
         type: 'water'
 	},
 	{
-		name: "Herbisto",
+		name: "The Grass Man",
 		HP: 200,
         attack: 25,
         type: 'grass'
