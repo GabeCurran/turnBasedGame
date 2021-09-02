@@ -140,8 +140,10 @@ const chooseTeam = function() {
                choice = Number(prompt("Choose your " + counter + " member!\nPick their number!"));
             }
 		// ^^ Make these into buttons instead! ^^
-
+        
+        //to line up with array index
         choice--;
+        
         Object.assign(chosenChar, characterList[choice]);
         teamArray.push(chosenChar);
     };
@@ -225,7 +227,7 @@ const resistanceList = {
     water: ['fire', 'water'],
     grass: ['water', 'grass'],
     fire: ['grass', 'fire']
-}
+};
 
 let critCalculator = function(damage) { // calculates critical hits
 
