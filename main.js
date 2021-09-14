@@ -231,7 +231,7 @@ const resistanceList = {
 
 let critCalculator = function(damage) { // calculates critical hits
 
-        critDisplay.innerHTML = ''
+        critDisplay.innerHTML = '';
         let crit = false;
 
         if (Math.round(Math.random() * 100) <= 15) {
