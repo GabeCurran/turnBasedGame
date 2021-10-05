@@ -4,7 +4,7 @@
 let startDisplay = document.querySelector("#startDisplay");
 let mainGame = document.querySelector("main");
 let resetGame = document.querySelector("#resetGame");
-let playingField = document.querySelector('#playingField');
+let playingField document.querySelector('#playingField');
 let team1Header = document.querySelector('#team1Header');
 let team2Header = document.querySelector('#team2Header');
 
@@ -231,20 +231,20 @@ const resistanceList = {
 
 let critCalculator = function(damage) { // calculates critical hits
 
-        critDisplay.innerHTML = '';
-        let crit = false;
+	critDisplay.innerHTML = '';
+	let crit = false;
 
-        if (Math.round(Math.random() * 100) <= 15) {
-            crit = true;
-        }
+	if (Math.round(Math.random() * 100) <= 15) {
+		crit = true;
+	}
 
-        if (crit == true) {
-            critDisplay.innerHTML = 'It was a Critical Hit,\nthe damage dealt was doubled!'
-            return damage * 2;
-        } else {
-            return damage;
-        }
-    };
+	if (crit == true) {
+		critDisplay.innerHTML = 'It was a Critical Hit,\nthe damage dealt was doubled!'
+		return damage * 2;
+	} else {
+		return damage;
+	}
+};
 
 const damageCalculator = function(attacker, target, ) {
     let weak = false;
