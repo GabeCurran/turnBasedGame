@@ -4,7 +4,7 @@
 let startDisplay = document.querySelector("#startDisplay");
 let mainGame = document.querySelector("main");
 let resetGame = document.querySelector("#resetGame");
-let playingField document.querySelector('#playingField');
+let playingField = document.querySelector('#playingField');
 let team1Header = document.querySelector('#team1Header');
 let team2Header = document.querySelector('#team2Header');
 
